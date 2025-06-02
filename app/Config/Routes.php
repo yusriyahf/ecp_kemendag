@@ -5,7 +5,11 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Landing::index');
+$routes->get('about', 'Landing::about');
+
+$routes->get('product', 'Product::index');
+$routes->get('product/(:num)', 'Product::detail/$1');
 
 // Admin routes
 $routes->group('admin', function ($routes) {
