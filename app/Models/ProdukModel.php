@@ -10,6 +10,16 @@ class ProdukModel extends Model
     protected $primaryKey = 'id_produk';
     protected $allowedFields = ['id_kategori', 'id_perusahaan', 'nama_produk', 'foto_produk', 'harga_rupiah', 'harga_dolar', 'satuan', 'deskripsi_produk', 'created_at', 'updated_at'];
 
+    public function getProdukByEcp($id_ecp)
+    {
+        return $this->select('tb_produk.*, tb_perusahaan.nama_perusahaan, tb_ecp.nama_ecp')
+            ->join('tb_perusahaan', 'tb_produk.id_perusahaan = tb_perusahaan.id_perusahaan')
+            ->join('tb_ecp', 'tb_perusahaan.id_ecp = tb_ecp.id_ecp')
+            ->where('tb_ecp.id_ecp', $id_ecp)
+            ->findAll();
+    }
+
+
     private function baseProductQuery()
     {
         return $this->select('tb_produk.*, tb_kategori.slug_kategori, tb_kategori.nama_kategori, tb_perusahaan.*')

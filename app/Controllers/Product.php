@@ -26,8 +26,9 @@ class Product extends BaseController
             'products' => $this->productModel->getAllproduct(),
             'categories' => $this->kategoriModel->findAll(),
             'latestProducts' => $this->productModel->orderBy('created_at', 'DESC')->limit(4)->findAll(),
-
             'totalProducts' => $this->productModel->countAllResults(false),
+
+
         ];
 
         return view('landing/product_category', $data);

@@ -9,20 +9,13 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>All Category</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papayaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
+                        <li><a href="<?= base_url('product') ?>">All</a></li>
+                        <?php foreach ($categories as $category): ?>
+                            <li><a href="<?= base_url('product/' . $category['slug_kategori']) ?>"><?= esc($category['nama_kategori']) ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -89,13 +82,15 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="<?= base_url('landing/img/featured/feature-1.jpg') ?>">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <!-- <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
+                                <li> <a href="https://wa.me/<?= $product['wa_pemesanan'] ?>?text=<?= urlencode('Halo, saya tertarik dengan produk ' . $product['nama_produk']) ?>" target="_blank">
+                                        <i class="fa fa-whatsapp"></i>
+                                    </a></li>
+                                <!-- <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#"><?= $product['nama_produk']; ?></a></h6>
+                            <h6><a href="<?= base_url('product/' . $product['slug_kategori'] . '/' . $product['slug_produk']) ?>"><?= $product['nama_produk']; ?></a></h6>
                             <h5>$<?= $product['harga_dolar']; ?></h5>
                         </div>
                     </div>
@@ -131,200 +126,103 @@
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="latest-product__text">
-                    <h4>Latest Products</h4>
+                    <h4><?= esc($ecp1['nama']) ?></h4>
                     <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-2.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-3.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-2.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-3.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
+                        <?php
+                        $count = 0;
+                        foreach ($ecp1['produk'] as $produk):
+                            if ($count % 3 === 0): // buka item baru setiap 3 produk
+                        ?>
+                                <div class="latest-prdouct__slider__item">
+                                <?php endif; ?>
+
+                                <a href="<?= base_url('product/' . $product['slug_kategori'] . '/' . $product['slug_produk']) ?>" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6><?= esc($produk['nama_produk']) ?></h6>
+                                        <span>$<?= esc($produk['harga_dolar']) ?></span>
+                                    </div>
+                                </a>
+
+                                <?php
+                                $count++;
+                                if ($count % 3 === 0 || $count === count($ecp1['produk'])):
+                                ?>
+                                </div> <!-- tutup slider item -->
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="latest-product__text">
-                    <h4>Top Rated Products</h4>
+                    <h4><?= esc($ecp2['nama']) ?></h4>
                     <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-2.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-3.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-2.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-3.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
+                        <?php
+                        $count = 0;
+                        foreach ($ecp2['produk'] as $produk):
+                            if ($count % 3 === 0):
+                        ?>
+                                <div class="latest-prdouct__slider__item">
+                                <?php endif; ?>
+
+                                <a href="<?= base_url('product/' . $product['slug_kategori'] . '/' . $product['slug_produk']) ?>" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6><?= esc($produk['nama_produk']) ?></h6>
+                                        <span>$<?= esc($produk['harga_dolar']) ?></span>
+                                    </div>
+                                </a>
+
+                                <?php
+                                $count++;
+                                if ($count % 3 === 0 || $count === count($ecp2['produk'])):
+                                ?>
+                                </div> <!-- close slider item -->
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-4 col-md-6">
                 <div class="latest-product__text">
-                    <h4>Review Products</h4>
+                    <h4><?= esc($ecp3['nama']) ?></h4>
+
                     <div class="latest-product__slider owl-carousel">
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-2.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-3.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-2.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="<?= base_url('landing/img/latest-product/lp-3.jpg'); ?>" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                        </div>
+                        <?php
+                        $count = 0;
+                        foreach ($ecp2['produk'] as $produk):
+                            if ($count % 3 === 0):
+                        ?>
+                                <div class="latest-prdouct__slider__item">
+                                <?php endif; ?>
+                                <a href="<?= base_url('product/' . $product['slug_kategori'] . '/' . $product['slug_produk']) ?>" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="<?= base_url('landing/img/latest-product/lp-1.jpg'); ?>" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6><?= esc($produk['nama_produk']) ?></h6>
+                                        <span>$<?= esc($produk['harga_dolar']) ?></span>
+                                    </div>
+                                </a>
+                                <?php
+                                $count++;
+                                if ($count % 3 === 0 || $count === count($ecp2['produk'])):
+                                ?>
+                                </div> <!-- close slider item -->
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 </section>

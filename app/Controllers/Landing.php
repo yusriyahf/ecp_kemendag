@@ -22,10 +22,26 @@ class Landing extends BaseController
 
     public function index(): string
     {
+        $produkEcp1 = $this->productModel->getProdukByEcp(1);
+        $produkEcp2 = $this->productModel->getProdukByEcp(2);
+        $produkEcp3 = $this->productModel->getProdukByEcp(3);
+
         $data = [
             'products' => $this->productModel->getAllproduct(),
             'categories' => $this->kategoriModel->findAll(),
 
+            'ecp1' => [
+                'nama' => $produkEcp1[0]['nama_ecp'] ?? 'ECP 1',
+                'produk' => $produkEcp1
+            ],
+            'ecp2' => [
+                'nama' => $produkEcp2[0]['nama_ecp'] ?? 'ECP 2',
+                'produk' => $produkEcp2
+            ],
+            'ecp3' => [
+                'nama' => $produkEcp3[0]['nama_ecp'] ?? 'ECP 3',
+                'produk' => $produkEcp3
+            ]
         ];
         return view('landing/home', $data);
     }
