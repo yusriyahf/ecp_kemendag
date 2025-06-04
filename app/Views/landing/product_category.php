@@ -12,8 +12,9 @@
                         <span>All Category</span>
                     </div>
                     <ul>
+                        <li><a href="<?= base_url('product') ?>">All</a></li>
                         <?php foreach ($categories as $category): ?>
-                            <li><a href="#"><?= esc($category['nama_kategori']) ?></a></li>
+                            <li><a href="<?= base_url('product/' . $category['slug_kategori']) ?>"><?= esc($category['nama_kategori']) ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -72,8 +73,9 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
-                        <h4>All Category</h4>
+                        <h4>Category</h4>
                         <ul>
+                            <li><a href="<?= base_url('product') ?>">All</a></li>
                             <?php foreach ($categories as $category): ?>
                                 <li><a href="<?= base_url('product/' . $category['slug_kategori']) ?>"><?= esc($category['nama_kategori']) ?></a></li>
                             <?php endforeach; ?>
@@ -342,9 +344,9 @@
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="<?= base_url('landing/img/product/product-1.jpg') ?>">
                                     <ul class="product__item__pic__hover">
-                                        <li><a href="<?= base_url('#') ?>"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="<?= base_url('#') ?>"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="<?= base_url('#') ?>"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li> <a href="https://wa.me/<?= $product['wa_pemesanan'] ?>?text=<?= urlencode('Halo, saya tertarik dengan produk ' . $product['nama_produk']) ?>" target="_blank">
+                                                <i class="fa fa-whatsapp"></i>
+                                            </a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">

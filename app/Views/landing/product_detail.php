@@ -12,6 +12,7 @@
                         <span>All Category</span>
                     </div>
                     <ul>
+                        <li><a href="<?= base_url('product') ?>">All</a></li>
                         <?php foreach ($categories as $category): ?>
                             <li><a href="<?= base_url('product/' . $category['slug_kategori']) ?>"><?= esc($category['nama_kategori']) ?></a></li>
                         <?php endforeach; ?>
