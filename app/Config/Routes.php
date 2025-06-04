@@ -9,7 +9,8 @@ $routes->get('/', 'Landing::index');
 $routes->get('about', 'Landing::about');
 
 $routes->get('product', 'Product::index');
-$routes->get('product/(:num)', 'Product::detail/$1');
+$routes->get('product/(:segment)', 'Product::category/$1');
+$routes->get('product/(:segment)/(:segment)', 'Product::detail/$1/$2');
 
 // Admin routes
 $routes->group('admin', function ($routes) {

@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="header__top">
+    <!-- <div class="header__top">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -19,7 +19,7 @@
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                         <div class="header__top__right__language">
-                            <img src="<?= base_url('landing/img/language.png'); ?>" alt="">
+                            <img src="landing/img/language.png" alt="">
                             <div>English</div>
                             <span class="arrow_carrot-down"></span>
                             <ul>
@@ -32,9 +32,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> 
     </div>
+    </div> -->
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -59,7 +59,7 @@
                 </nav>
 
             </div>
-            <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
@@ -67,7 +67,7 @@
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="humberger__open">
             <i class="fa fa-bars"></i>

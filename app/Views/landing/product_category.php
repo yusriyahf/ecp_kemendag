@@ -9,7 +9,7 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>All Category</span>
                     </div>
                     <ul>
                         <?php foreach ($categories as $category): ?>
@@ -52,12 +52,13 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>All Product</h2>
+                    <h2><?= isset($kategori['nama_kategori']) && !empty($kategori['nama_kategori']) ? esc($kategori['nama_kategori']) : 'All Product' ?></h2>
                     <div class="breadcrumb__option">
                         <a href="<?= base_url('/'); ?>">Home</a>
-                        <span>Product</span>
+                        <span><?= isset($kategori['nama_kategori']) && !empty($kategori['nama_kategori']) ? esc($kategori['nama_kategori']) : 'All Product' ?></span>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -74,11 +75,19 @@
                         <h4>All Category</h4>
                         <ul>
                             <?php foreach ($categories as $category): ?>
-                                <li><a href="#"><?= esc($category['nama_kategori']) ?></a></li>
+                                <li><a href="<?= base_url('product/' . $category['slug_kategori']) ?>"><?= esc($category['nama_kategori']) ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="sidebar__item">
+                        <h4>All Ecp</h4>
+                        <ul>
+                            <?php foreach ($ecps as $ecp): ?>
+                                <li><a href="#"><?= esc($ecp['nama_ecp']) ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <!-- <div class="sidebar__item">
                         <h4>Price</h4>
                         <div class="price-range-wrap">
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -94,8 +103,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="sidebar__item sidebar__item__color--option">
+                    </div> -->
+                    <!-- <div class="sidebar__item sidebar__item__color--option">
                         <h4>Colors</h4>
                         <div class="sidebar__item__color sidebar__item__color--white">
                             <label for="white">
@@ -160,7 +169,7 @@
                                 <input type="radio" id="tiny">
                             </label>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="sidebar__item">
                         <div class="latest-product__text">
                             <h4>Latest Products</h4>
@@ -185,7 +194,7 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-7">
-                <div class="product__discount">
+                <!-- <div class="product__discount">
                     <div class="section-title product__discount__title">
                         <h2>Sale Off</h2>
                     </div>
@@ -194,7 +203,7 @@
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
                                     <div class="product__discount__item__pic set-bg"
-                                        data-setbg="<?= base_url('landing/img/product/discount/pd-1.jpg') ?>">
+                                        data-setbg="'landing/img/product/discount/pd-1.jpg'">
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -212,7 +221,7 @@
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
                                     <div class="product__discount__item__pic set-bg"
-                                        data-setbg="<?= base_url('landing/img/product/discount/pd-2.jpg') ?>">
+                                        data-setbg="'landing/img/product/discount/pd-2.jpg'">
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -230,7 +239,7 @@
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
                                     <div class="product__discount__item__pic set-bg"
-                                        data-setbg="<?= base_url('landing/img/product/discount/pd-3.jpg') ?>">
+                                        data-setbg="'landing/img/product/discount/pd-3.jpg'">
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -248,7 +257,7 @@
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
                                     <div class="product__discount__item__pic set-bg"
-                                        data-setbg="<?= base_url('landing/img/product/discount/pd-4.jpg') ?>">
+                                        data-setbg="'landing/img/product/discount/pd-4.jpg'">
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -266,7 +275,7 @@
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
                                     <div class="product__discount__item__pic set-bg"
-                                        data-setbg="<?= base_url('landing/img/product/discount/pd-5.jpg') ?>">
+                                        data-setbg="'landing/img/product/discount/pd-5.jpg'">
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -284,7 +293,7 @@
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
                                     <div class="product__discount__item__pic set-bg"
-                                        data-setbg="<?= base_url('landing/img/product/discount/pd-6.jpg') ?>">
+                                        data-setbg="'landing/img/product/discount/pd-6.jpg'">
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -302,7 +311,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
                 <div class="filter__item">
                     <div class="row">
                         <div class="col-lg-4 col-md-5">
@@ -339,7 +348,7 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="<?= base_url('#') ?>"><?= esc($product['nama_produk']) ?></a></h6>
+                                    <h6><a href="<?= base_url('product/' . $product['slug_kategori'] . '/' . $product['slug_produk']) ?>"><?= esc($product['nama_produk']) ?></a></h6>
                                     <h5>$<?= number_format($product['harga_dolar'], 2) ?></h5>
                                 </div>
                             </div>
